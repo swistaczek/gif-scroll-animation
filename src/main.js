@@ -104,7 +104,7 @@ Apify.main(async () => {
 
     const urlObj = new URL(url);
     const siteName = urlObj.hostname;
-    const baseFileName = `${siteName.substring(0, 255)}.gif`;
+    const baseFileName = `${siteName.substring(0, 255)}`;
 
     // Save to dataset so there is higher chance the user will find it
 
@@ -116,7 +116,7 @@ Apify.main(async () => {
     const kvStore = await Apify.openKeyValueStore();
 
     try {
-        const filenameOrig = `${baseFileName}_original`;
+        const filenameOrig = `${baseFileName}.gif`;
         await saveGif(filenameOrig, gifBuffer);
         toPushDataset.gifUrlOriginal = kvStore.getPublicUrl(filenameOrig);
 
