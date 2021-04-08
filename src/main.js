@@ -104,7 +104,7 @@ Apify.main(async () => {
 
     const urlObj = new URL(url);
     const siteName = urlObj.hostname;
-    const baseFileName = `${siteName.substring(0, 255)}`;
+    const baseFileName = `${siteName.substring(0, 250)}`;
 
     // Save to dataset so there is higher chance the user will find it
 
@@ -123,7 +123,7 @@ Apify.main(async () => {
         if (lossyCompression) {
             const lossyBuffer = await compressGif(gifBuffer, 'lossy');
             log.info('Lossy compression finished');
-            const filenameLossy = `${baseFileName}_lossy-comp`;
+            const filenameLossy = `${baseFileName}-lossy.gif`;
             await saveGif(filenameLossy, lossyBuffer);
             toPushDataset.gifUrlLossy = kvStore.getPublicUrl(filenameLossy);
         }
@@ -131,7 +131,7 @@ Apify.main(async () => {
         if (loslessCompression) {
             const loslessBuffer = await compressGif(gifBuffer, 'losless');
             log.info('Losless compression finished');
-            const filenameLosless = `${baseFileName}_losless-comp`;
+            const filenameLosless = `${baseFileName}-losless.gif`;
             await saveGif(filenameLosless, loslessBuffer);
             toPushDataset.gifUrlLosless = kvStore.getPublicUrl(filenameLosless);
         }
