@@ -104,7 +104,7 @@ Apify.main(async () => {
 
     const urlObj = new URL(url);
     const siteName = urlObj.hostname;
-    const baseFileName = `${siteName}-scroll`.substring(0, 255);
+    const baseFileName = `${siteName.substring(0, 255)}.gif`;
 
     // Save to dataset so there is higher chance the user will find it
 
